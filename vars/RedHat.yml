@@ -1,0 +1,5 @@
+duounix_src_deps:
+  - openssl-devel
+  - pam-devel
+
+duounix_package: duo_unix

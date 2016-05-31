@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  author: Stephan Kemper
+  description: Install and configure Duo Security MFA for Unix SSH/console access
+  company: ViaSat, Inc.
+  license: 3-clause BSD
+  min_ansible_version: 2.1
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Ubuntu
+      versions:
+        - precise
+        - trusty
+        - xenial
+    - name: CentOS
+      versions:
+        - 6
+        - 7
+  categories:
+    - system
+  dependencies: []

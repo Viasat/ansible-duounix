@@ -1,0 +1,11 @@
+[duo]
+; Duo integration key
+ikey = {{ duounix_integration_key }}
+; Duo secret key
+skey = {{ duounix_secret_key }}
+; Duo API host
+host = {{ duounix_api_hostname }}
+
+{% for (key, value) in duounix_pam_config.iteritems() %}
+{{ key }} = {{ value }}
+{% endfor %}

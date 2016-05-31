@@ -1,0 +1,34 @@
+- name: Install dependencies
+  package: name={{ item }} state=present
+  with_items: duounix_src_deps
+
+- name: Download source
+  get_url: >
+    url="{{ duounix_path }}/duo_unix-{{ duounix_version }}.tar.gz"
+    sha256sum="{{ duounix_checksum }}"
+    dest=/tmp/duo_unix-{{ duounix_version }}.tar.gz
+
+- name: Untar source
+  unarchive: >
+    src=/tmp/duo_unix-{{ duounix_version }}.tar.gz
+    dest=/tmp/
+    copy=no
+
+- name: Configure the build
+  shell: ./configure {% if duounix_build_pam %}--with-pam{% endif %} --prefix={{ duounix_prefix_dir }} --sysconfdir={{ duounix_conf_dir }}
+  args:
+    chdir: /tmp/duo_unix-{{ duounix_version }}/
+    creates: /tmp/duo_unix-{{ duounix_version }}/Makefile
+
+- name: Build the software
+  shell: make
+  args:
+    chdir: /tmp/duo_unix-{{ duounix_version }}/
+    creates: /tmp/duo_unix-{{ duounix_version }}/login_duo/login_duo
+
+- name: Install the software
+  shell: make install
+  become_user: root
+  args:
+    chdir: /tmp/duo_unix-{{ duounix_version }}/
+    creates: "{{ duounix_prefix_dir }}/sbin/login_duo"

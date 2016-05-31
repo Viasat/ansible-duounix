@@ -1,0 +1,53 @@
+#
+# Debian-like systems
+#
+
+- name: Place the GPG key (Debian-like)
+  copy: src=APT-GPG-KEY-DUO dest=/tmp/APT-GPG-KEY-DUO owner=root group=root mode=0644
+  when: ansible_os_family == 'Debian'
+
+- name: Install the GPG key (Debian-like)
+  apt_key: file=/tmp/APT-GPG-KEY-DUO id=15D32EFC state=present
+  become_user: root
+  when: ansible_os_family == 'Debian'
+
+- name: Install the repo (Debian-like)
+  apt_repository: >
+    repo='deb http://pkg.duosecurity.com/{{ ansible_distribution }} {{ ansible_distribution_release }} main'
+  when: ansible_os_family == 'Debian'
+
+
+#
+# RedHat-like systems
+#
+
+- name: Test for the GPG key (RedHat-like)
+  shell: rpm -qi gpg-pubkey-15d32efc-\*
+  register: rpm_gpg_installed
+  when: ansible_os_family == 'RedHat'
+  changed_when: False
+  failed_when: False
+
+- name: Place the GPG key (RedHat-like)
+  copy: src=RPM-GPG-KEY-DUO dest=/tmp/RPM-GPG-KEY-DUO owner=root group=root mode=0644
+  when: ansible_os_family == 'RedHat' and "rpm_gpg_installed.rc != 0"
+
+- name: Install the GPG key (RedHat-like)
+  become_user: root
+  shell: rpm --import /tmp/RPM-GPG-KEY-DUO
+  when: ansible_os_family == 'RedHat' and "rpm_gpg_installed.rc != 0"
+
+- name: Install the repo (RedHat-like)
+  yum_repository:
+    name: duosecurity
+    description: Official Duo Security repository
+    baseurl: http://pkg.duosecurity.com/{{ ansible_distribution }}/$releasever/$basearch
+    state: present
+  when: ansible_os_family == 'RedHat'
+
+#
+# Common
+#
+
+- name: Install duo_unix
+  package: name={{ duounix_package }} state=present

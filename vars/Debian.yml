@@ -1,0 +1,6 @@
+duounix_src_deps:
+  - libssl-dev
+  - libpam-dev
+  - build-essential
+
+duounix_package: duo-unix
