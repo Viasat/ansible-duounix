@@ -15,10 +15,6 @@ galaxy_info:
         - precise
         - trusty
         - xenial
-    - name: CentOS
-      versions:
-        - 6
-        - 7
-  categories:
+  galaxy_tags:
     - system
-  dependencies: []
+dependencies: []
