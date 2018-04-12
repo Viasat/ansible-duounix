@@ -12,11 +12,11 @@ duounix_secret_key: ''
 duounix_api_hostname: ''
 duounix_login_config:
   failmode: secure
-  pushinfo: yes
-  autopush: no
+  pushinfo: "yes"
+  autopush: "no"
   prompts: 3
 duounix_pam_config:
   failmode: secure
-  pushinfo: yes
-  autopush: no
+  pushinfo: "yes"
+  autopush: "no"
   prompts: 3
