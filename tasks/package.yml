@@ -12,8 +12,8 @@
   when: ansible_os_family == 'Debian'
 
 - name: Install the repo (Debian-like)
-  apt_repository: >
-    repo='deb http://pkg.duosecurity.com/{{ ansible_distribution }} {{ ansible_distribution_release }} main'
+  apt_repository:
+    repo: 'deb [arch=amd64] https://pkg.duosecurity.com/{{ ansible_distribution }} {{ ansible_distribution_release }} main'
   when: ansible_os_family == 'Debian'
 
 
