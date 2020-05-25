@@ -33,5 +33,5 @@ If building from source, the following variables take effect:
 | --------                      | -------                                                       | -----                                     |
 | duounix_checksum              | 2eb11dff0a173c62e31...                                        | SHA256 hash of the file                   |
 | duounix_path                  | https://dl.duosecurity.com/                                   |                                           |
-| duounix_version               | 1.9.18                                                        |                                           |
+| duounix_version               | latest                                                        |                                           |
 | duounix_prefix_dir            | /usr                                                          |                                           |
