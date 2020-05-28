@@ -24,7 +24,7 @@ configuration in this role, because those will vary widely by use case.
 | duounix_install               | package                                                       | could be `package` or `source`            |
 | duounix_conf_dir              | /etc/duo                                                      |                                           |
 | duounix_login_config          | `{failmode: secure, pushinfo: yes, autopush: no, prompts: 3}` | any extra config you want for login_duo   |
-| duounix_pam_config            | `{failmode: secure, pushinfo: yes, autopush: no, prompts: 3}` | any extra config you want for pam_duo     |
+| duounix_pam_config            | Whatever is set in duounix_login_config                       | any extra config you want for pam_duo     |
 | duounix_build_pam             | yes                                                           |                                           |
 
 If building from source, the following variables take effect:

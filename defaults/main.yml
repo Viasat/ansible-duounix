@@ -15,8 +15,5 @@ duounix_login_config:
   pushinfo: "yes"
   autopush: "no"
   prompts: 3
-duounix_pam_config:
-  failmode: secure
-  pushinfo: "yes"
-  autopush: "no"
-  prompts: 3
+duounix_pam_config: "{{ duounix_login_config }}"
+
