@@ -21,21 +21,15 @@
 # RedHat-like systems
 #
 
-- name: Test for the GPG key (RedHat-like)
-  shell: rpm -qi gpg-pubkey-15d32efc-\*
-  register: rpm_gpg_installed
-  when: ansible_os_family == 'RedHat'
-  changed_when: False
-  failed_when: False
-
 - name: Place the GPG key (RedHat-like)
-  copy: src=RPM-GPG-KEY-DUO dest=/tmp/RPM-GPG-KEY-DUO owner=root group=root mode=0644
-  when: ansible_os_family == 'RedHat' and "rpm_gpg_installed.rc != 0"
+  copy: src=RPM-GPG-KEY-DUO dest=/etc/pki/rpm-gpg/RPM-GPG-KEY-DUO owner=root group=root mode=0644
+  when: ansible_os_family == 'RedHat'
 
 - name: Install the GPG key (RedHat-like)
-  become_user: root
-  shell: rpm --import /tmp/RPM-GPG-KEY-DUO
-  when: ansible_os_family == 'RedHat' and "rpm_gpg_installed.rc != 0"
+  rpm_key:
+    state: present
+    key: /etc/pki/rpm-gpg/RPM-GPG-KEY-DUO
+  when: ansible_os_family == 'RedHat' 
 
 - name: Install the repo (RedHat-like)
   yum_repository:
