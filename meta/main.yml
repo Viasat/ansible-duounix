@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: duounix
   author: Stephan Kemper
   description: Install and configure Duo Security MFA for Unix SSH/console access
   company: Viasat, Inc.
