@@ -6,6 +6,6 @@ skey = {{ duounix_secret_key }}
 ; Duo API host
 host = {{ duounix_api_hostname }}
 
-{% for (key, value) in duounix_pam_config.iteritems() %}
+{% for (key, value) in duounix_pam_config.items() %}
 {{ key }} = {{ value }}
 {% endfor %}

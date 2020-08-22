@@ -1,10 +1,10 @@
 - name: Install dependencies
   package: name={{ item }} state=present
-  with_items: duounix_src_deps
+  with_items: "{{ duounix_src_deps }}"
 
 - name: Download source
   get_url: >
-    url="{{ duounix_path }}/duo_unix-{{ duounix_version }}.tar.gz"
+    url="{{ duounix_path }}duo_unix-{{ duounix_version }}.tar.gz"
     sha256sum="{{ duounix_checksum }}"
     dest=/tmp/duo_unix-{{ duounix_version }}.tar.gz
 

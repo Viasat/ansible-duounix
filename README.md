@@ -5,6 +5,13 @@ This is a fairly uncomplicated role for installing Duo Security's
 or console access. We intentionally **don't** handle things like PAM
 configuration in this role, because those will vary widely by use case.
 
+# INSTALLATION NOTES
+
+* When installing from source, you need a compiler toolchain (obviously).  On a 
+  distro like Ubuntu, one is installed by default, but others like CentOS leave
+  the choice up to you.  So do we.  **When installing from source, make sure you
+  install a compiler first.**
+
 # Configuration
 
 **Bold** items are required.
