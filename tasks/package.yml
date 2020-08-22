@@ -3,11 +3,11 @@
 #
 
 - name: Place the GPG key (Debian-like)
-  copy: src=APT-GPG-KEY-DUO dest=/tmp/APT-GPG-KEY-DUO owner=root group=root mode=0644
+  copy: src=DUO-GPG-PUBLIC-KEY dest=/tmp/DUO-GPG-PUBLIC-KEY owner=root group=root mode=0644
   when: ansible_os_family == 'Debian'
 
 - name: Install the GPG key (Debian-like)
-  apt_key: file=/tmp/APT-GPG-KEY-DUO id=15D32EFC state=present
+  apt_key: file=/tmp/DUO-GPG-PUBLIC-KEY id=C1A07A85 state=present
   become_user: root
   when: ansible_os_family == 'Debian'
 
@@ -22,13 +22,13 @@
 #
 
 - name: Place the GPG key (RedHat-like)
-  copy: src=RPM-GPG-KEY-DUO dest=/etc/pki/rpm-gpg/RPM-GPG-KEY-DUO owner=root group=root mode=0644
+  copy: src=DUO-GPG-PUBLIC-KEY dest=/etc/pki/rpm-gpg/DUO-GPG-PUBLIC-KEY owner=root group=root mode=0644
   when: ansible_os_family == 'RedHat'
 
 - name: Install the GPG key (RedHat-like)
   rpm_key:
     state: present
-    key: /etc/pki/rpm-gpg/RPM-GPG-KEY-DUO
+    key: /etc/pki/rpm-gpg/DUO-GPG-PUBLIC-KEY
   when: ansible_os_family == 'RedHat' 
 
 - name: Install the repo (RedHat-like)
